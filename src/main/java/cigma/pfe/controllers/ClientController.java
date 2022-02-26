@@ -1,7 +1,6 @@
 package cigma.pfe.controllers;
     import cigma.pfe.models.Client;
     import cigma.pfe.services.ClientService;
-    import cigma.pfe.services.ClientServiceImpl;
 
 
 public class ClientController {
@@ -16,7 +15,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    public Client save(Client c ){
+    public boolean save(Client c ){
         System.out.println("ClientController level...");
        return clientService.save(c);
     }

@@ -14,8 +14,8 @@ public class MonApplication {
             ClientRepository ctrl0 = (ClientRepository) context.getBean("repository");
             ClientService ctrl1 = (ClientService) context.getBean("service");
             */
-            Client client = new Client(7,"Yassine");
-            ctrl.save(client);
+            Client cli = new Client("Yassine");
+            ctrl.save(cli);
 
         }
 }
