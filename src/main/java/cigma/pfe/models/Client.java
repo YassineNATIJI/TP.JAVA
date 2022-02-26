@@ -1,16 +1,13 @@
 package cigma.pfe.models;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @Entity(name="TClients")
-
-
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +18,7 @@ public class Client {
         this.name = name;
     }
 
-    public Client() {
-    }
+    public Client() {}
 
     @Column
     private String name;

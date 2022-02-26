@@ -1,26 +1,24 @@
 package cigma.pfe.controllers;
     import cigma.pfe.models.Client;
     import cigma.pfe.services.ClientService;
-
+    import lombok.AllArgsConstructor;
 
 public class ClientController {
-    ClientService clientService;
+    private ClientService service ;
 
-    public ClientController(ClientService clientService) {
-        System.out.println("Call ClientController with clientService param....");
-        this.clientService = clientService;
+    public void setService(ClientService service) {
+        this.service = service;
     }
-
-    public void setClientService(ClientService clientService) {
-        this.clientService = clientService;
+    public void save(Client c){
+        service.save(c);
     }
-
-    public boolean save(Client c ){
-        System.out.println("ClientController level...");
-       return clientService.save(c);
+    public void modify(Client c){
+        service.modify(c);
     }
-    public ClientController() {
-        System.out.println("Call ClientController ....");
+    public void removeById(long id){
+        service.removeById(id);
     }
-
+    public Client getById(long id) {
+        return service.getById(id);
+    }
 }
