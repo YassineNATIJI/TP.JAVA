@@ -1,27 +1,25 @@
 package cigma.pfe;
+
+    import cigma.pfe.models.CarteFidelio;
     import cigma.pfe.models.Client;
+    import cigma.pfe.models.Facture;
     import cigma.pfe.controllers.ClientController;
+    import cigma.pfe.models.Promotion;
     import org.springframework.context.ApplicationContext;
     import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+    import java.util.Arrays;
+    import java.util.List;
+
+
 public class MonApplication {
     public static void main(String[] args) {
-        ApplicationContext context =new ClassPathXmlApplicationContext("spring.xml");
-        ClientController ctrl = (ClientController) context.getBean("controller");
-// Test save use case for three clients
-        ctrl.save(new Client("OMAR"));
-        ctrl.save(new Client("SIHAM"));
-        ctrl.save(new Client("AHMED"));
-        ctrl.save(new Client("FARAH"));
-// Test modify use case for client with id==1
-      ctrl.modify(new Client(1L,"new Name"));
-
-        ctrl.removeById(1L);
-
-
-       Client found = ctrl.getById(1);
-
-
-
+        ApplicationContext ctx=new ClassPathXmlApplicationContext("spring.xml");
+        ClientController ctr= (ClientController) ctx.getBean("controller");
+        Client client = new Client("OMAR");
+        CarteFidelio carteFidelio = new CarteFidelio("A29930489");
+        carteFidelio.setClient(client);
+        client.setCarteFidelio(carteFidelio);
+        ctr.save(client);
     }
 }
