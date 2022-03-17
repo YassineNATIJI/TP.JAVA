@@ -6,24 +6,26 @@ package cigma.pfe.services;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.stereotype.Service;
     import org.springframework.transaction.annotation.Transactional;
+    import java.util.List;
 
 @Service
-@Transactional
 public class ClientServiceImpl implements ClientService {
 
     @Autowired
-    private ClientRepository dao;
-    public ClientServiceImpl() {
-        System.out.println("creation bean service");
-    }
+    private ClientRepository clientRepository;
+
     @Override
-    public void save(Client c) {
-        dao.save(c);
+
+    public Client save(Client clt) {
+        return clientRepository.save(clt);
     }
 
     @Override
-    public Client modify(Client c) {
-        return null;
+    @Transactional
+    public Client modify(Client newClt) {
+        Client oldClt = clientRepository.findById(newClt.getId()).get();
+        oldClt.setName(newClt.getName());
+        return clientRepository.save(oldClt);
     }
 
     @Override
@@ -34,5 +36,21 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client getById(long id) {
         return null;
+    }
+
+    @Override
+    @Transactional
+    public void remove(long idClt) {
+        clientRepository.deleteById(idClt);
+    }
+
+    @Override
+    public Client getOne(long idClt) {
+        return clientRepository.findById(idClt).get();
+    }
+
+    @Override
+    public List<Client> getAll() {
+        return (List<Client>) clientRepository.findAll();
     }
 }
