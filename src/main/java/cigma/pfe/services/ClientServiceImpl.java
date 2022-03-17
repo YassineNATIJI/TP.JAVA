@@ -1,27 +1,38 @@
 package cigma.pfe.services;
+
     import cigma.pfe.repositories.ClientRepository;
     import cigma.pfe.models.Client;
-    import lombok.AllArgsConstructor;
 
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Service;
+    import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@Transactional
 public class ClientServiceImpl implements ClientService {
+
+    @Autowired
     private ClientRepository dao;
-    public void setDao(ClientRepository dao) {
-        this.dao = dao;
+    public ClientServiceImpl() {
+        System.out.println("creation bean service");
     }
     @Override
-    public Client save(Client c) {
-        return dao.save(c);
+    public void save(Client c) {
+        dao.save(c);
     }
+
     @Override
     public Client modify(Client c) {
-        return dao.update(c);
+        return null;
     }
+
     @Override
     public void removeById(long id) {
-        dao.deleteById(id);
+
     }
+
     @Override
     public Client getById(long id) {
-        return dao.findById(id);
+        return null;
     }
 }
