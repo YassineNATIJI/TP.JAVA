@@ -11,6 +11,7 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
          private long id;
          private String name;
+         
 
     public Client(String name) {
         this.name = name;
